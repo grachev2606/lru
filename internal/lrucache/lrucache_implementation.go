@@ -30,9 +30,7 @@ func (l *LRUEntity) Add(key, value string) bool {
 	}
 
 	if l.list.Len() == l.capacity {
-		keyMap := l.list.Back().Value.(data)
-		delete(l.mapCache, keyMap.k)
-		l.list.Remove(l.list.Back())
+		l.Remove(l.list.Back().Value.(data).k)
 	}
 
 	element := l.list.PushFront(data{k: key, v: value})
